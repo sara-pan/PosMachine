@@ -57,15 +57,15 @@ public class PromotionTest {
         //assertThat(total,is(352d));
         assertEquals(total,352,1e-6);
     }
-/*
+
     @Test
     public void calculateWithOnlyFullCut() throws Exception {
 
         total = posMachine.calculateWithPromotion(cartItems,noDiscountItem,noSecondHalfItem);
 
         //assertThat(total,is(395d));
-        assertEquals(total,395,1e-6);
-    }*/
+        assertEquals(total,400,1e-6);
+    }
 
     @Test
     public void calculateWithAllPromotion() throws Exception {

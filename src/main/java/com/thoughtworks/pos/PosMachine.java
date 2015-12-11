@@ -24,13 +24,13 @@ public final class PosMachine {
     }
 
     public double calculateWithPromotion(final List<CartItem> cartItems, List<DiscountItem> discountItems, List<SecondHalfItem> secondHalfItems){
-        FullCutPromotion promotion=new FullCutPromotion();
-        AllPromotion allPromotion=new AllPromotion(promotion);
+       // FullCutPromotion promotion=new FullCutPromotion();
+        //AllPromotion allPromotion=new AllPromotion(promotion);
         double total = 0;
         double subTotal=0;
         for (CartItem cartItem : cartItems) {
             subTotal= calculateSubtotalWithPromtion(cartItem,discountItems, secondHalfItems);
-            subTotal=allPromotion.calculatePriceAfterPromotion(400,5.0,subTotal);
+            //subTotal=allPromotion.calculatePriceAfterPromotion(400,5.0,subTotal);
             total += subTotal;
         }
         //total = allPromotion.calculatePriceAfterPromotion(400,5.0,total);
@@ -46,19 +46,12 @@ public final class PosMachine {
     private double calculateSubtotalWithPromtion(CartItem cartItem, List<DiscountItem> discountItems, List<SecondHalfItem> secondHalfItems){
         double subTotalAfterPromotion=0.0;
 
-        SecondHalfPromotion promotion=new SecondHalfPromotion();
-        AllPromotion allPromotion=new AllPromotion(promotion);
-
         subTotalAfterPromotion=calculateSubtotal(cartItem);
-        if(secondHalfItems.size()>0){
-            for (SecondHalfItem secondHalfItem : secondHalfItems) {
-                if (secondHalfItem.getBarcode().equals(cartItem.getBarcode())) {
-                    subTotalAfterPromotion=allPromotion.calculatePriceAfterPromotion(cartItem.getQuantity(),0.0,subTotalAfterPromotion);
-                }
-            }
-        }
+
         DiscountPromotion discountPromotion=new DiscountPromotion();
-        allPromotion.setPromotion(discountPromotion);
+        AllPromotion allPromotion=new AllPromotion(discountPromotion);
+
+
         if(secondHalfItems.size()>0) {
             for (DiscountItem discountItem : discountItems) {
                 if (discountItem.getBarcode().equals(cartItem.getBarcode())) {
@@ -66,6 +59,28 @@ public final class PosMachine {
                 }
             }
         }
+
+        SecondHalfPromotion promotion=new SecondHalfPromotion();
+        allPromotion.setPromotion(promotion);
+        if(secondHalfItems.size()>0){
+            for (SecondHalfItem secondHalfItem : secondHalfItems) {
+                if (secondHalfItem.getBarcode().equals(cartItem.getBarcode())) {
+                    subTotalAfterPromotion=allPromotion.calculatePriceAfterPromotion(cartItem.getQuantity(),0.0,subTotalAfterPromotion);
+                }
+            }
+        }
+
+        FullCutPromotion fullCutPromotion=new FullCutPromotion();
+        allPromotion.setPromotion(fullCutPromotion);
+        //if(secondHalfItems.size()>0){
+          //  for (SecondHalfItem secondHalfItem : secondHalfItems) {
+            //    if (secondHalfItem.getBarcode().equals(cartItem.getBarcode())) {
+              //      subTotalAfterPromotion=allPromotion.calculatePriceAfterPromotion(cartItem.getQuantity(),0.0,subTotalAfterPromotion);
+                //}
+           // }
+        //}
+        subTotalAfterPromotion=allPromotion.calculatePriceAfterPromotion(400,10,subTotalAfterPromotion);
+
         return subTotalAfterPromotion;
     }
 
