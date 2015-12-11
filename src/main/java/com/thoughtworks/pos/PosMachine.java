@@ -79,7 +79,7 @@ public final class PosMachine {
                 //}
            // }
         //}
-        subTotalAfterPromotion=allPromotion.calculatePriceAfterPromotion(400,10,subTotalAfterPromotion);
+        subTotalAfterPromotion=allPromotion.calculatePriceAfterPromotion(400,10.0,subTotalAfterPromotion);
 
         return subTotalAfterPromotion;
     }
