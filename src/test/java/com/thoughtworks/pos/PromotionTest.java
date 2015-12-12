@@ -20,10 +20,10 @@ import static org.junit.Assert.assertEquals;
  * Created by root on 15-12-5.
  */
 public class PromotionTest {
-    private List<Item> allItems=Arrays.asList(new Item("ITEM000001", 3),new Item("ITEM000003", 2),new Item("ITEM000005", 3));
+    private List<Item> allItems=Arrays.asList(new Item("ITEM000001", 40),new Item("ITEM000003", 50),new Item("ITEM000005", 60));
     PosMachine posMachine=new PosMachine(allItems);
     private List<DiscountItem> discountItems=Arrays.asList(new DiscountItem("ITEM000001",75),new DiscountItem("ITEM000005",90));
-    private List<CartItem> cartItems=Arrays.asList(new CartItem("ITEM000001", 40),new CartItem("ITEM000003",50),new CartItem("ITEM000005",60));
+    private List<CartItem> cartItems=Arrays.asList(new CartItem("ITEM000001", 3),new CartItem("ITEM000003",2),new CartItem("ITEM000005",3));
     private List<SecondHalfItem> secondHalfItems=Arrays.asList(new SecondHalfItem("ITEM000001"),new SecondHalfItem("ITEM000003"));
     private double total=0.0;
     private List<DiscountItem> noDiscountItem=new ArrayList<>();
@@ -37,7 +37,7 @@ public class PromotionTest {
         total = posMachine.calculateWithPromotion(cartItems,noDiscountItem,secondHalfItems);
 
        // assertThat(total,is(355d));
-        assertEquals(total,355,1e-6);
+        assertEquals(355,total,1e-6);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class PromotionTest {
         total = posMachine.calculate(cartItems);
 
         //assertThat(total,is(400d));
-        assertEquals(total,400,1e-6);
+        assertEquals(400,total,1e-6);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class PromotionTest {
         total = posMachine.calculateWithPromotion(cartItems,discountItems,noSecondHalfItem);
 
         //assertThat(total,is(352d));
-        assertEquals(total,352,1e-6);
+        assertEquals(352,total,1e-6);
     }
 
     @Test
@@ -64,14 +64,14 @@ public class PromotionTest {
         total = posMachine.calculateWithPromotion(cartItems,noDiscountItem,noSecondHalfItem);
 
         //assertThat(total,is(395d));
-        assertEquals(total,400,1e-6);
+        assertEquals(400,total,1e-6);
     }
 
     @Test
     public void calculateWithAllPromotion() throws Exception {
         total = posMachine.calculateWithPromotion(cartItems,discountItems,secondHalfItems);
 
-        assertEquals(total,312,1e-6);
+        assertEquals(312,total,1e-6);
         //assertThat(total,is(312d));
     }
 }

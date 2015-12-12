@@ -12,7 +12,7 @@ public class SecondHalfPromotion implements Promotion {
         if (quantityOrDiscount<2)
             return subTotal;
         Integer numberOfSecondHalf = quantityOrDiscount/2;
-        subTotal = subTotal/quantityOrDiscount*(quantityOrDiscount-numberOfSecondHalf*0.5);
+        subTotal = (subTotal/quantityOrDiscount)*(quantityOrDiscount-numberOfSecondHalf*0.5);
         return subTotal;
     }
 }

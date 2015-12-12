@@ -52,7 +52,7 @@ public final class PosMachine {
         AllPromotion allPromotion=new AllPromotion(discountPromotion);
 
 
-        if(secondHalfItems.size()>0) {
+        if(discountItems.size()>0) {
             for (DiscountItem discountItem : discountItems) {
                 if (discountItem.getBarcode().equals(cartItem.getBarcode())) {
                     subTotalAfterPromotion = allPromotion.calculatePriceAfterPromotion(discountItem.getDiscount(), 0.0, subTotalAfterPromotion);
